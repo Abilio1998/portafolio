@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight, Github, Linkedin } from 'lucide-react';
-import { staggerContainer, fadeInUp, fadeIn, viewport } from '@/utils/motion';
+import { fadeInUp, staggerContainer } from '@/utils/motion';
 
 const words = ['Construyo', 'productos', 'digitales', 'que', 'resuelven', 'problemas', 'reales.'];
 

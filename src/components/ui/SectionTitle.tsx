@@ -3,6 +3,7 @@ import { fadeInUp, viewport } from '@/utils/motion';
 import { cn } from '@/utils/cn';
 
 interface SectionTitleProps {
+  id?: string;
   label?: string;
   title: string;
   description?: string;
@@ -11,6 +12,7 @@ interface SectionTitleProps {
 }
 
 export function SectionTitle({
+  id,
   label,
   title,
   description,
@@ -19,6 +21,7 @@ export function SectionTitle({
 }: SectionTitleProps) {
   return (
     <motion.div
+      id={id}
       className={cn(
         'mb-16',
         align === 'center' && 'text-center mx-auto max-w-2xl',

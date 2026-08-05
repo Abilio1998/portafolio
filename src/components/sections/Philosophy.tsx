@@ -40,7 +40,7 @@ export function Philosophy() {
           viewport={viewport}
           variants={staggerContainer}
         >
-          {philosophy.map((item, i) => (
+          {philosophy.map((item) => (
             <motion.div
               key={item.number}
               className="group grid grid-cols-[80px_1fr] gap-8 py-10 border-b border-zinc-800/60 last:border-0 hover:border-zinc-700/60 transition-colors duration-300"

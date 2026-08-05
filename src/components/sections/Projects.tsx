@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock, Zap } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { Badge } from '@/components/ui/Badge';
 import { SectionTitle } from '@/components/ui/SectionTitle';
-import { staggerContainer, fadeInUp, scaleIn, viewport } from '@/utils/motion';
+import { staggerContainer, scaleIn, viewport } from '@/utils/motion';
 
 const statusLabels = {
   live: 'En vivo',
