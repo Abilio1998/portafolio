@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Download, ArrowUpRight } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, ArrowUpRight, Phone } from 'lucide-react';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { fadeInUp, staggerContainer, viewport } from '@/utils/motion';
 
@@ -11,6 +11,15 @@ const contactLinks = [
     href: 'mailto:abifernandez826@gmail.com',
     icon: Mail,
     description: 'La forma más rápida de contactarme.',
+    external: false,
+  },
+  {
+    id: 'contact-phone',
+    label: 'Teléfono',
+    value: '+34 698 60 15 18',
+    href: 'tel:+34698601518',
+    icon: Phone,
+    description: 'Disponible para llamadas directas.',
     external: false,
   },
   {
@@ -49,7 +58,7 @@ export function Contact() {
         />
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10"
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
