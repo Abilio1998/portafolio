@@ -1,0 +1,149 @@
+/* =========================================================
+   DESIGN SYSTEM — Abilio Fernández Portfolio
+   ========================================================= */
+
+/* ── Google Fonts — must be first ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base Reset ── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-zinc-950 text-zinc-50 font-sans;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html.light body {
+    @apply bg-white text-zinc-900;
+  }
+
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.25);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-zinc-950;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-700 rounded-sm;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-600;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* ── Component Classes ── */
+@layer components {
+  .glass {
+    background: rgba(24, 24, 27, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    @apply border border-zinc-800/80;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-blue {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-display {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  .text-hero {
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .text-section-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .text-body-large {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.75;
+    @apply text-zinc-400;
+  }
+
+  .section-padding {
+    padding: clamp(5rem, 10vw, 9rem) 0;
+  }
+
+  .container-narrow {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+  }
+
+  .container-wide {
+    max-width: 82rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+/* ── Utilities ── */
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ── react-photo-view overrides ── */
+.PhotoView-Portal {
+  z-index: 9999;
+}
