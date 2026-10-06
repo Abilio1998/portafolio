@@ -17,8 +17,8 @@ export function Footer() {
       <div className="container-wide py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <img src="/logo-footer.png" alt="Abi Studio Web" className="h-8 md:h-10 w-auto" />
+            <div className="flex items-center mb-4 bg-white rounded-xl px-4 py-2 w-fit">
+              <img src="/LOGO-ABISTUDIO-WEB.png" alt="Abi Studio Web" className="h-5 md:h-7 w-auto" />
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
               Desarrollo web para restaurantes y negocios locales: webs rápidas,

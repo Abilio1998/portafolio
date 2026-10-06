@@ -46,7 +46,7 @@ export function Navbar() {
     >
       <nav className="container-wide h-16 md:h-[4.5rem] flex items-center justify-between" aria-label="Principal">
         <Link to="/" className="flex items-center gap-2.5 group" aria-label="Abi Studio Web — Inicio">
-          <img src="/logo.png" alt="Abi Studio Web" className="h-8 md:h-9 w-auto group-hover:scale-105 transition-transform duration-200" />
+          <img src="/LOGO-ABISTUDIO-WEB.png" alt="Abi Studio Web" className="h-8 md:h-9 w-auto group-hover:scale-105 transition-transform duration-200" />
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">
