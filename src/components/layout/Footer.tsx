@@ -18,12 +18,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <span className="w-9 h-9 rounded-xl bg-brand text-ink flex items-center justify-center font-extrabold">
-                A
-              </span>
-              <span className="font-extrabold text-white tracking-tight">
-                AbiStudio<span className="text-brand">.</span>web
-              </span>
+              <img src="/logo-footer.png" alt="Abi Studio Web" className="h-8 md:h-10 w-auto" />
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
               Desarrollo web para restaurantes y negocios locales: webs rápidas,
