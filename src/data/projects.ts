@@ -169,8 +169,8 @@ export const projects: Project[] = [
     category: 'Restaurante',
     tagline: 'Web de restaurante mediterráneo con reservas online y carta digital.',
     type: 'web',
-    status: 'completed',
-    duration: '2 semanas',
+    status: 'in-progress',
+    duration: 'En desarrollo',
     year: '2026',
     problem:
       'El Balconet, restaurante mediterráneo en Premià de Dalt, necesitaba una presencia digital a la altura de su terraza y su cocina: mostrar su carta y menú del día, y permitir reservar mesa sin depender del teléfono.',
