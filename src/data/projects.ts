@@ -159,6 +159,42 @@ export const projects: Project[] = [
     url: 'https://www.reformas6j.com',
     order: 4,
   },
+  {
+    id: 'elbalconet',
+    title: 'El Balconet',
+    tagline: 'Web de restaurante mediterráneo con reservas online y carta digital.',
+    type: 'web',
+    status: 'completed',
+    duration: '2 semanas',
+    year: '2026',
+    problem:
+      'El Balconet, restaurante mediterráneo en Premià de Dalt, necesitaba una presencia digital a la altura de su terraza y su cocina: mostrar su carta y menú del día, y permitir reservar mesa sin depender del teléfono.',
+    solution:
+      'Diseño y desarrollo de una web elegante y cálida, alineada con la identidad de marca, con hero inmersivo, carta y menú del día, y un sistema de reservas online con selección de fecha, comensales, ubicación (interior o terraza) y horario.',
+    result:
+      'El restaurante dispone de una web profesional y multilenguaje que transmite su ambiente desde el primer segundo y convierte visitas en reservas de forma directa, simplificando la gestión del día a día.',
+    technologies: [
+      'React', 'TypeScript', 'TailwindCSS', 'Framer Motion',
+      'Supabase', 'Vite',
+    ],
+    features: [
+      'Sistema de reservas online',
+      'Selección interior / terraza',
+      'Carta y menú del día',
+      'Sistema multilenguaje',
+      'Diseño alineado con la marca',
+      'Responsive completo',
+      'Enlaces a redes sociales',
+    ],
+    imageFolder: 'Elbalconet',
+    heroImage: 'El-balconet-premia-de-dalt.png',
+    images: [
+      'El-balconet-premia-de-dalt.png',
+      'El-balconet-premia-de-dalt-reservar.png',
+    ],
+    accentColor: '#d4af37',
+    order: 5,
+  },
 ];
 
 export function getProjectById(id: string): Project | undefined {
