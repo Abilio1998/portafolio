@@ -8,7 +8,7 @@ import { Faq, faqs } from '@/components/sections/Faq';
 import { Contact } from '@/components/sections/Contact';
 import { site } from '@/data/site';
 
-const TITLE = 'Abilio Fernández — Webs, reservas online y cartas digitales para restaurantes';
+const TITLE = 'Abi Studio — Webs, reservas online y cartas digitales para restaurantes';
 const DESCRIPTION =
   'Desarrollador web con 4,5 años en hostelería. Creo webs rápidas, sistemas de reservas y cartas digitales con QR para restaurantes y negocios locales. Presupuesto gratis.';
 

@@ -31,7 +31,7 @@ export function ProjectNav({ project, prev, next }: ProjectNavProps) {
                     Pedir presupuesto gratis <ArrowRight size={18} />
                   </Link>
                   <a
-                    href={whatsappUrl(`Hola Abilio, he visto el proyecto ${project.title} y me gustaría algo parecido para mi negocio.`)}
+                    href={whatsappUrl(`Hola Abi, he visto el proyecto ${project.title} y me gustaría algo parecido para mi negocio.`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-lg btn-whatsapp"

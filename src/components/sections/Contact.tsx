@@ -29,7 +29,7 @@ export function Contact() {
 
   function buildText() {
     return [
-      `Hola Abilio, soy ${name.trim()}.`,
+      `Hola Abi, soy ${name.trim()}.`,
       `Tengo un negocio de tipo: ${business}.`,
       '',
       message.trim(),
@@ -115,7 +115,7 @@ export function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-ink-300 hover:text-white hover:bg-white/20 transition-colors"
-                  aria-label="LinkedIn de Abilio (se abre en una pestaña nueva)"
+                  aria-label="LinkedIn de Abi Studio (se abre en una pestaña nueva)"
                 >
                   <Linkedin size={18} />
                 </a>
@@ -125,7 +125,7 @@ export function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-ink-300 hover:text-white hover:bg-white/20 transition-colors"
-                  aria-label="GitHub de Abilio (se abre en una pestaña nueva)"
+                  aria-label="GitHub de Abi Studio (se abre en una pestaña nueva)"
                 >
                   <Github size={18} />
                 </a>

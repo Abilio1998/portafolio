@@ -50,7 +50,7 @@ export function Hero() {
           </h1>
 
           <p className="text-lead max-w-xl mb-8">
-            Soy Abilio, desarrollador web con <strong className="text-ink">4,5 años de experiencia en hostelería</strong>.
+            Soy Abi, desarrollador web con <strong className="text-ink">4,5 años de experiencia en hostelería</strong>.
             Creo webs rápidas, reservas online y cartas digitales para restaurantes y negocios locales,
             pensadas para que más gente te encuentre, confíe en ti y reserve.
           </p>
@@ -97,7 +97,7 @@ export function Hero() {
             </div>
             <img
               src="/projects/Elbalconet/El-balconet-premia-de-dalt.webp"
-              alt="Web de El Balconet, restaurante en Premià de Dalt, diseñada por Abilio Fernández"
+              alt="Web de El Balconet, restaurante en Premià de Dalt, diseñada por Abi Studio"
               width={1400}
               height={643}
               className="w-full aspect-[16/11] object-cover object-center"

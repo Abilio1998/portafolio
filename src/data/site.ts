@@ -1,5 +1,5 @@
 export const site = {
-  name: 'Abilio Fernández',
+  name: 'Abi Studio',
   email: 'abifernandez826@gmail.com',
   phone: '+34 698 60 15 18',
   phoneRaw: '34698601518',
@@ -13,7 +13,7 @@ export function whatsappUrl(message: string): string {
 }
 
 export const DEFAULT_WA_MESSAGE =
-  'Hola Abilio, he visto tu portafolio y me gustaría pedirte un presupuesto para mi negocio.';
+  'Hola Abi, he visto tu portafolio y me gustaría pedirte un presupuesto para mi negocio.';
 
 export function mailtoUrl(subject: string, body: string): string {
   return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

@@ -34,7 +34,7 @@ export function About() {
                 src="/abilio-fernandez.webp"
                 srcSet="/abilio-fernandez-sm.webp 320w, /abilio-fernandez.webp 640w"
                 sizes="(min-width: 1024px) 380px, 320px"
-                alt="Abilio Fernández, desarrollador web"
+                alt="Abi Studio, estudio de desarrollo web"
                 width={640}
                 height={862}
                 loading="lazy"
@@ -52,7 +52,7 @@ export function About() {
             <Reveal>
               <p className="eyebrow">Sobre mí</p>
               <h2 id="about-title" className="text-section-title text-ink mb-5">
-                Hola, soy Abilio. Programo con mentalidad de <span className="text-brand-600">dueño de negocio</span>.
+                Hola, soy Abi. Programo con mentalidad de <span className="text-brand-600">dueño de negocio</span>.
               </h2>
               <p className="text-lead mb-4">
                 Empecé en hostelería, gestionando equipos y operaciones. Vi de cerca cómo los problemas
