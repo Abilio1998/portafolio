@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import { fadeInUp, viewport } from '@/utils/motion';
+import { Reveal } from '@/components/ui/Reveal';
 import { cn } from '@/utils/cn';
 
 interface SectionTitleProps {
@@ -8,6 +7,7 @@ interface SectionTitleProps {
   title: string;
   description?: string;
   align?: 'left' | 'center';
+  invert?: boolean;
   className?: string;
 }
 
@@ -17,30 +17,31 @@ export function SectionTitle({
   title,
   description,
   align = 'left',
+  invert = false,
   className,
 }: SectionTitleProps) {
   return (
-    <motion.div
-      id={id}
+    <Reveal
       className={cn(
-        'mb-16',
+        'mb-12 md:mb-16',
         align === 'center' && 'text-center mx-auto max-w-2xl',
         className
       )}
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewport}
-      variants={fadeInUp}
     >
       {label && (
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-400 mb-4">
-          {label}
+        <p className={cn('eyebrow', invert && '!text-brand-400')}>{label}</p>
+      )}
+      <h2
+        id={id}
+        className={cn('text-section-title mb-4', invert ? 'text-white' : 'text-ink')}
+      >
+        {title}
+      </h2>
+      {description && (
+        <p className={cn('text-lead max-w-2xl', align === 'center' && 'mx-auto', invert && '!text-ink-300')}>
+          {description}
         </p>
       )}
-      <h2 className="text-section-title text-zinc-50 mb-4">{title}</h2>
-      {description && (
-        <p className="text-body-large max-w-xl">{description}</p>
-      )}
-    </motion.div>
+    </Reveal>
   );
 }

@@ -9,13 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.0.0",
-    "lucide-react": "^0.469.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-helmet-async": "^3.0.0",
-    "react-photo-view": "^1.2.4",
     "react-router-dom": "^7.1.1",
     "tailwind-merge": "^2.6.0"
   },
@@ -26,6 +23,7 @@
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
     "postcss": "^8.5.1",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.6.3",
     "vite": "^5.4.11"

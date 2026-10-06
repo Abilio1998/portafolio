@@ -1,65 +1,81 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, WhatsApp } from '@/components/ui/Icons';
+import { Reveal } from '@/components/ui/Reveal';
+import { whatsappUrl } from '@/data/site';
 import type { Project } from '@/types';
-import { fadeInUp, viewport } from '@/utils/motion';
 
 interface ProjectNavProps {
+  project: Project;
   prev: Project | null;
   next: Project | null;
 }
 
-export function ProjectNav({ prev, next }: ProjectNavProps) {
-  if (!prev && !next) return null;
-
+export function ProjectNav({ project, prev, next }: ProjectNavProps) {
   return (
-    <motion.nav
-      className="border-t border-zinc-800/60 py-12"
-      aria-label="Navegación entre proyectos"
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewport}
-      variants={fadeInUp}
-    >
-      <div className="container-narrow flex items-center justify-between gap-4">
-        {prev ? (
-          <Link
-            to={`/projects/${prev.id}`}
-            className="group flex items-center gap-4 text-left flex-1 max-w-xs hover:opacity-80 transition-opacity duration-200"
-          >
-            <div className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center group-hover:border-zinc-600 transition-colors duration-200 flex-shrink-0">
-              <ArrowLeft
-                size={16}
-                className="text-zinc-500 group-hover:-translate-x-1 transition-transform duration-200"
-              />
+    <>
+      {/* CTA de cierre: mantiene al visitante dentro del embudo */}
+      <section className="py-12 md:py-16" aria-label="Contacto">
+        <div className="container-narrow">
+          <Reveal>
+            <div className="rounded-[2rem] bg-ink text-white p-8 md:p-12 relative overflow-hidden text-center">
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[420px] h-[260px] rounded-full bg-brand/25 blur-[100px]" aria-hidden="true" />
+              <div className="relative">
+                <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-3">
+                  ¿Quieres un resultado como el de {project.title}?
+                </h2>
+                <p className="text-ink-300 max-w-xl mx-auto mb-8">
+                  Cuéntame tu idea y te preparo un presupuesto gratuito y sin compromiso.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Link to="/#contacto" className="btn btn-lg btn-primary">
+                    Pedir presupuesto gratis <ArrowRight size={18} />
+                  </Link>
+                  <a
+                    href={whatsappUrl(`Hola Abilio, he visto el proyecto ${project.title} y me gustaría algo parecido para mi negocio.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-lg btn-whatsapp"
+                  >
+                    <WhatsApp size={20} /> WhatsApp
+                  </a>
+                </div>
+              </div>
             </div>
-            <div>
-              <p className="text-xs text-zinc-600 mb-0.5">Proyecto anterior</p>
-              <p className="text-sm font-medium text-zinc-300">{prev.title}</p>
-            </div>
-          </Link>
-        ) : (
-          <div />
-        )}
+          </Reveal>
+        </div>
+      </section>
 
-        {next && (
-          <Link
-            to={`/projects/${next.id}`}
-            className="group flex items-center gap-4 text-right flex-1 max-w-xs justify-end hover:opacity-80 transition-opacity duration-200"
-          >
-            <div>
-              <p className="text-xs text-zinc-600 mb-0.5">Siguiente proyecto</p>
-              <p className="text-sm font-medium text-zinc-300">{next.title}</p>
-            </div>
-            <div className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center group-hover:border-zinc-600 transition-colors duration-200 flex-shrink-0">
-              <ArrowRight
-                size={16}
-                className="text-zinc-500 group-hover:translate-x-1 transition-transform duration-200"
-              />
-            </div>
-          </Link>
-        )}
-      </div>
-    </motion.nav>
+      {(prev || next) && (
+        <nav className="border-t border-cream-200 py-10" aria-label="Navegación entre proyectos">
+          <div className="container-narrow flex items-center justify-between gap-4">
+            {prev ? (
+              <Link to={`/projects/${prev.id}`} className="group flex items-center gap-4 flex-1 max-w-xs">
+                <span className="w-11 h-11 rounded-full border-2 border-cream-200 bg-white flex items-center justify-center group-hover:border-ink transition-colors shrink-0">
+                  <ArrowLeft size={18} className="text-ink group-hover:-translate-x-0.5 transition-transform" />
+                </span>
+                <span>
+                  <span className="block text-xs font-semibold text-ink-500">Proyecto anterior</span>
+                  <span className="block font-extrabold text-ink">{prev.title}</span>
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+
+            {next && (
+              <Link to={`/projects/${next.id}`} className="group flex items-center gap-4 flex-1 max-w-xs justify-end text-right">
+                <span>
+                  <span className="block text-xs font-semibold text-ink-500">Siguiente proyecto</span>
+                  <span className="block font-extrabold text-ink">{next.title}</span>
+                </span>
+                <span className="w-11 h-11 rounded-full border-2 border-cream-200 bg-white flex items-center justify-center group-hover:border-ink transition-colors shrink-0">
+                  <ArrowRight size={18} className="text-ink group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            )}
+          </div>
+        </nav>
+      )}
+    </>
   );
 }

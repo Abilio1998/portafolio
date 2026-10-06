@@ -1,183 +1,98 @@
-import { motion } from 'framer-motion';
-import { fadeInUp, staggerContainer, viewport } from '@/utils/motion';
+import { Link } from 'react-router-dom';
+import { Reveal } from '@/components/ui/Reveal';
+import { Check, ArrowRight } from '@/components/ui/Icons';
+import { technologies } from '@/data/technologies';
 
-const stats = [
-  { value: '4.5', unit: 'años', label: 'en hostelería' },
-  { value: '2', unit: 'años', label: 'como Encargado' },
-  { value: '4', unit: 'proyectos', label: 'en producción' },
-];
-
-const timeline = [
+const reasons = [
   {
-    period: '2019 — 2024',
-    role: 'Hostelería & Management',
-    description:
-      'Trabajé como Encargado de Sala gestionando equipos, operaciones y experiencia de cliente. Detecté que la mayoría de negocios del sector operaban con procesos manuales, sin datos y sin herramientas digitales.',
-    tag: 'Origen',
+    title: 'Entiendo tu negocio desde dentro',
+    text: 'Pasé 4,5 años en hostelería, 2 de ellos como encargado. Sé lo que es un servicio a tope y qué necesita de verdad un restaurante.',
   },
   {
-    period: '2023',
-    role: 'Decisión de cambio',
-    description:
-      'Decidí aprender desarrollo web para crear las soluciones que yo mismo echaba en falta. No quería ser un desarrollador más; quería construir productos que resolvieran problemas reales que había vivido.',
-    tag: 'Pivote',
+    title: 'Hablas conmigo, no con una agencia',
+    text: 'Trato directo de principio a fin: yo diseño, desarrollo y te atiendo. Sin intermediarios ni mensajes perdidos.',
   },
   {
-    period: '2024 — Hoy',
-    role: 'Frontend Developer & Product Builder',
-    description:
-      'Desarrollo plataformas completas con React, Next.js, TypeScript e IA para empresas reales. Mi ventaja diferencial es que entiendo el negocio además del código.',
-    tag: 'Presente',
+    title: 'Pienso en resultados, no solo en código',
+    text: 'Cada decisión busca más reservas, más confianza y menos trabajo manual para ti.',
+  },
+  {
+    title: 'Tecnología moderna y rápida',
+    text: 'Webs ligeras, seguras y preparadas para crecer. Si mañana necesitas más funciones, la base ya está lista.',
   },
 ];
 
 export function About() {
   return (
-    <section
-      id="sobre-mi"
-      className="section-padding relative"
-      aria-labelledby="about-title"
-    >
+    <section id="sobre-mi" className="section-padding bg-cream-100/60" aria-labelledby="about-title">
       <div className="container-narrow">
-        {/* Header with Photo */}
-        <div className="flex flex-col md:flex-row gap-12 items-start justify-between mb-20">
-          <motion.div
-            className="flex-1"
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={fadeInUp}
-          >
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-400 mb-4">
-              Sobre mí
-            </p>
-            <h2
-              id="about-title"
-              className="text-section-title text-zinc-50 mb-6 max-w-2xl"
-            >
-              No solo programo.{' '}
-              <span className="text-zinc-500">
-                Entiendo el negocio que hay detrás.
-              </span>
-            </h2>
-            <p className="text-body-large max-w-2xl">
-              Empecé en hostelería. Aprendí a gestionar equipos, a optimizar
-              operaciones y, sobre todo, a detectar los problemas que nadie había
-              resuelto digitalmente. Por eso decidí construir las soluciones yo
-              mismo.
-            </p>
-          </motion.div>
+        <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-center">
+          <Reveal>
+            <div className="relative max-w-sm mx-auto lg:max-w-none">
+              <div className="absolute -inset-3 rounded-[2rem] bg-brand/20 rotate-3" aria-hidden="true" />
+              <img
+                src="/abilio-fernandez.webp"
+                srcSet="/abilio-fernandez-sm.webp 320w, /abilio-fernandez.webp 640w"
+                sizes="(min-width: 1024px) 380px, 320px"
+                alt="Abilio Fernández, desarrollador web"
+                width={640}
+                height={862}
+                loading="lazy"
+                decoding="async"
+                className="relative w-full aspect-[4/5] object-cover object-top rounded-[2rem] shadow-card-hover"
+              />
+              <div className="absolute -bottom-5 -right-3 sm:-right-6 px-5 py-4 rounded-2xl bg-white border border-cream-200 shadow-card-hover">
+                <p className="text-2xl font-extrabold text-ink leading-none">4,5 años</p>
+                <p className="text-xs font-semibold text-ink-500 mt-1">en hostelería antes de programar</p>
+              </div>
+            </div>
+          </Reveal>
 
-          <motion.div
-            className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border border-zinc-800 bg-zinc-900 flex-shrink-0"
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={fadeInUp}
-          >
-            <img
-              src="/abilio-fernandez.png"
-              alt="Abilio Fernández"
-              className="w-full h-full object-cover object-center"
-              loading="lazy"
-            />
-          </motion.div>
-        </div>
+          <div>
+            <Reveal>
+              <p className="eyebrow">Sobre mí</p>
+              <h2 id="about-title" className="text-section-title text-ink mb-5">
+                Hola, soy Abilio. Programo con mentalidad de <span className="text-brand-600">dueño de negocio</span>.
+              </h2>
+              <p className="text-lead mb-4">
+                Empecé en hostelería, gestionando equipos y operaciones. Vi de cerca cómo los problemas
+                digitales (reservas por teléfono, cartas desactualizadas, webs que no atraen a nadie)
+                costaban dinero a negocios buenos.
+              </p>
+              <p className="text-lead mb-8">
+                Por eso aprendí a programar: para construir yo mismo las soluciones que echaba en falta.
+                Hoy ayudo a restaurantes y negocios locales a tener una presencia online que realmente funciona.
+              </p>
+            </Reveal>
 
-        {/* Timeline + Stats layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
-          {/* Timeline — izquierda */}
-          <motion.div
-            className="lg:col-span-3 space-y-0"
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={staggerContainer}
-          >
-            {timeline.map((item, i) => (
-              <motion.div
-                key={i}
-                className="relative pl-8 pb-12 last:pb-0"
-                variants={fadeInUp}
-              >
-                {/* Timeline line */}
-                {i < timeline.length - 1 && (
-                  <div className="absolute left-[11px] top-3 bottom-0 w-px bg-gradient-to-b from-zinc-700 to-transparent" />
-                )}
-                {/* Dot */}
-                <div
-                  className={`absolute left-0 top-1 w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center ${
-                    i === timeline.length - 1
-                      ? 'border-blue-500 bg-blue-500/15'
-                      : 'border-zinc-700 bg-zinc-900'
-                  }`}
-                >
-                  {i === timeline.length - 1 && (
-                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                  )}
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs text-zinc-600 font-mono">
-                      {item.period}
+            <ul className="grid sm:grid-cols-2 gap-4 mb-8">
+              {reasons.map((r, i) => (
+                <Reveal key={r.title} as="li" delay={i * 70} className="list-none">
+                  <div className="flex gap-3">
+                    <span className="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-trust text-white flex items-center justify-center">
+                      <Check size={14} />
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-500 text-xs border border-zinc-700">
-                      {item.tag}
-                    </span>
+                    <div>
+                      <h3 className="font-extrabold text-ink text-sm mb-1 leading-snug">{r.title}</h3>
+                      <p className="text-sm text-ink-600 leading-relaxed">{r.text}</p>
+                    </div>
                   </div>
-                  <h3 className="text-base font-semibold text-zinc-200 mb-2">
-                    {item.role}
-                  </h3>
-                  <p className="text-sm text-zinc-500 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                </Reveal>
+              ))}
+            </ul>
 
-          {/* Stats — derecha */}
-          <motion.div
-            className="lg:col-span-2 space-y-4"
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={staggerContainer}
-          >
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 hover:border-zinc-700 hover:bg-zinc-900/80 transition-all duration-300"
-                variants={fadeInUp}
-              >
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className="text-4xl font-bold text-zinc-100 tracking-tight">
-                    {stat.value}
-                  </span>
-                  <span className="text-lg text-zinc-500 font-medium">
-                    {stat.unit}
-                  </span>
-                </div>
-                <p className="text-sm text-zinc-500">{stat.label}</p>
-              </motion.div>
-            ))}
-
-            {/* Values card */}
-            <motion.div
-              className="p-6 rounded-2xl border border-blue-500/20 bg-blue-500/5 hover:border-blue-500/30 transition-all duration-300"
-              variants={fadeInUp}
-            >
-              <p className="text-xs font-semibold tracking-[0.15em] uppercase text-blue-400 mb-3">
-                Mi ventaja diferencial
-              </p>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Entiendo los problemas operativos de los negocios porque los he
-                vivido. Construyo software con criterio de negocio, no solo con
-                criterio técnico.
-              </p>
-            </motion.div>
-          </motion.div>
+            <Reveal>
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-ink-500 mb-3">Tecnologías con las que trabajo</p>
+              <div className="flex flex-wrap gap-2 mb-8">
+                {technologies.map((t) => (
+                  <span key={t.name} className="chip">{t.name}</span>
+                ))}
+              </div>
+              <Link to="/#contacto" className="btn btn-md btn-dark">
+                Trabajemos juntos <ArrowRight size={16} />
+              </Link>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

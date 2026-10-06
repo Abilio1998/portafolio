@@ -1,107 +1,84 @@
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Github, Linkedin, Mail, WhatsApp } from '@/components/ui/Icons';
+import { site, whatsappUrl, DEFAULT_WA_MESSAGE } from '@/data/site';
 
 const links = [
-  { href: '/#sobre-mi', label: 'Sobre mí' },
-  { href: '/#proyectos', label: 'Proyectos' },
-  { href: '/#habilidades', label: 'Habilidades' },
-  { href: '/#contacto', label: 'Contacto' },
-];
-
-const socials = [
-  {
-    href: 'https://github.com/Abilio1998',
-    label: 'GitHub',
-    icon: Github,
-  },
-  {
-    href: 'https://www.linkedin.com/in/abi-fernandez-0ab034188/',
-    label: 'LinkedIn',
-    icon: Linkedin,
-  },
-  {
-    href: 'mailto:abifernandez826@gmail.com',
-    label: 'Email',
-    icon: Mail,
-  },
+  { to: '/#servicios', label: 'Servicios' },
+  { to: '/#proyectos', label: 'Proyectos' },
+  { to: '/#proceso', label: 'Cómo trabajo' },
+  { to: '/#sobre-mi', label: 'Sobre mí' },
+  { to: '/#faq', label: 'Preguntas frecuentes' },
+  { to: '/#contacto', label: 'Contacto' },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-800/60 bg-zinc-950/80">
-      <div className="container-wide py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* Brand */}
+    <footer className="bg-ink text-ink-300 pb-24 sm:pb-0">
+      <div className="container-wide py-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white font-bold text-sm">
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="w-9 h-9 rounded-xl bg-brand text-ink flex items-center justify-center font-extrabold">
                 A
-              </div>
-              <span className="font-semibold text-zinc-100 text-sm tracking-tight">
-                Abilio<span className="text-zinc-500">.dev</span>
+              </span>
+              <span className="font-extrabold text-white tracking-tight">
+                Abilio<span className="text-brand">.</span>dev
               </span>
             </div>
-            <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">
-              Frontend Developer & Product Builder. Construyo productos digitales
-              que resuelven problemas reales.
+            <p className="text-sm leading-relaxed max-w-xs">
+              Desarrollo web para restaurantes y negocios locales: webs rápidas,
+              reservas online y cartas digitales que consiguen clientes.
             </p>
           </div>
 
-          {/* Nav */}
           <div>
-            <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-zinc-600 mb-4">
-              Navegación
-            </h3>
-            <ul className="space-y-2.5">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-200"
-                  >
-                    {link.label}
-                  </a>
+            <h3 className="text-xs font-bold tracking-[0.18em] uppercase text-white mb-4">Navegación</h3>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+              {links.map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to} className="text-sm hover:text-white transition-colors">
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-zinc-600 mb-4">
-              Contacto
-            </h3>
-            <ul className="space-y-2.5">
-              {socials.map((social) => (
-                <li key={social.href}>
-                  <a
-                    href={social.href}
-                    target={social.href.startsWith('http') ? '_blank' : undefined}
-                    rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="flex items-center gap-2 text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-200 group"
-                  >
-                    <social.icon size={14} />
-                    {social.label}
-                    {social.href.startsWith('http') && (
-                      <ArrowUpRight
-                        size={12}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                      />
-                    )}
-                  </a>
-                </li>
-              ))}
+            <h3 className="text-xs font-bold tracking-[0.18em] uppercase text-white mb-4">Hablemos</h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href={whatsappUrl(DEFAULT_WA_MESSAGE)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm hover:text-white transition-colors"
+                >
+                  <WhatsApp size={16} /> WhatsApp · {site.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 text-sm hover:text-white transition-colors break-all">
+                  <Mail size={16} /> {site.email}
+                </a>
+              </li>
+              <li>
+                <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-white transition-colors">
+                  <Linkedin size={16} /> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href={site.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-white transition-colors">
+                  <Github size={16} /> GitHub
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="pt-8 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-zinc-600">
-            © {new Date().getFullYear()} Abilio Fernández. Todos los derechos reservados.
-          </p>
-          <p className="text-xs text-zinc-700">
-            Diseñado y desarrollado con React + TailwindCSS + Framer Motion
-          </p>
+        <div className="pt-6 border-t border-white/10 text-xs flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p>© {new Date().getFullYear()} {site.name}. Todos los derechos reservados.</p>
+          <p>Hecho con React + TailwindCSS</p>
         </div>
       </div>
     </footer>

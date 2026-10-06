@@ -3,6 +3,8 @@
 export interface Project {
   id: string;
   title: string;
+  /** Sector del cliente (se muestra en las tarjetas) */
+  category: string;
   tagline: string;
   badge?: string;
   badgeVariant?: 'founder' | 'saas' | 'web' | 'spa';
@@ -24,23 +26,8 @@ export interface Project {
   order: number;
 }
 
-export interface Skill {
-  category: string;
-  icon: string;
-  description: string;
-  items: string[];
-}
-
 export interface Technology {
   name: string;
   category: 'frontend' | 'backend' | 'database' | 'ai' | 'devops' | 'tools';
   logo?: string;
 }
-
-export interface PhilosophyItem {
-  number: string;
-  title: string;
-  description: string;
-}
-
-export type Theme = 'dark' | 'light';

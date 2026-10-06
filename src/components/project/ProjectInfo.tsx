@@ -1,107 +1,62 @@
-import { motion } from 'framer-motion';
+import { Reveal } from '@/components/ui/Reveal';
+import { Check } from '@/components/ui/Icons';
 import type { Project } from '@/types';
-import { fadeInUp, staggerContainer, viewport } from '@/utils/motion';
 
 interface ProjectInfoProps {
   project: Project;
 }
 
 export function ProjectInfo({ project }: ProjectInfoProps) {
-  return (
-    <section className="py-16" aria-label="Detalles del proyecto">
-      <div className="container-narrow">
-        {/* Problem / Solution / Result */}
-        <motion.div
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-20"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          variants={staggerContainer}
-        >
-          {[
-            {
-              label: 'El problema',
-              content: project.problem,
-              accent: '#ef4444',
-            },
-            {
-              label: 'La solución',
-              content: project.solution,
-              accent: project.accentColor,
-            },
-            {
-              label: 'El resultado',
-              content: project.result,
-              accent: '#10b981',
-            },
-          ].map((block) => (
-            <motion.div
-              key={block.label}
-              className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40"
-              variants={fadeInUp}
-            >
-              <div
-                className="w-1.5 h-1.5 rounded-full mb-4"
-                style={{ background: block.accent }}
-              />
-              <h3
-                className="text-xs font-semibold tracking-[0.15em] uppercase mb-3"
-                style={{ color: block.accent }}
-              >
-                {block.label}
-              </h3>
-              <p className="text-sm text-zinc-400 leading-relaxed">{block.content}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+  const blocks = [
+    { label: 'El problema', content: project.problem, accent: '#DC2626' },
+    { label: 'La solución', content: project.solution, accent: '#EA580C' },
+    { label: 'El resultado', content: project.result, accent: '#15803D' },
+  ];
 
-        {/* Technologies + Features */}
+  return (
+    <section className="py-12 md:py-16" aria-label="Detalles del proyecto">
+      <div className="container-narrow">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-16">
+          {blocks.map((block, i) => (
+            <Reveal key={block.label} delay={i * 90}>
+              <div className="h-full card p-7">
+                <span className="block w-8 h-1 rounded-full mb-5" style={{ background: block.accent }} />
+                <h2 className="text-xs font-extrabold tracking-[0.15em] uppercase mb-3" style={{ color: block.accent }}>
+                  {block.label}
+                </h2>
+                <p className="text-ink-600 leading-relaxed">{block.content}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Technologies */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={fadeInUp}
-          >
-            <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-zinc-600 mb-5">
+          <Reveal>
+            <h2 className="text-xs font-extrabold tracking-[0.15em] uppercase text-ink-500 mb-5">
               Tecnologías utilizadas
-            </h3>
+            </h2>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1.5 rounded-xl bg-zinc-800/80 text-zinc-400 text-xs font-medium border border-zinc-700/50"
-                >
-                  {tech}
-                </span>
+                <span key={tech} className="chip !px-3.5 !py-1.5 !text-sm">{tech}</span>
               ))}
             </div>
-          </motion.div>
+          </Reveal>
 
-          {/* Features */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={fadeInUp}
-            transition={{ delay: 0.1 }}
-          >
-            <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-zinc-600 mb-5">
+          <Reveal delay={100}>
+            <h2 className="text-xs font-extrabold tracking-[0.15em] uppercase text-ink-500 mb-5">
               Funcionalidades principales
-            </h3>
-            <ul className="space-y-2.5">
+            </h2>
+            <ul className="space-y-3">
               {project.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
-                  <div
-                    className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: project.accentColor }}
-                  />
-                  <span className="text-sm text-zinc-400">{feature}</span>
+                  <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-trust-50 text-trust flex items-center justify-center">
+                    <Check size={12} />
+                  </span>
+                  <span className="text-ink-700 font-medium">{feature}</span>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

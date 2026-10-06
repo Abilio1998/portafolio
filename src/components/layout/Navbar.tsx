@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from '@/components/ui/Icons';
+import { cn } from '@/utils/cn';
 
 const navLinks = [
-  { href: '/#sobre-mi', label: 'Sobre mí' },
-  { href: '/#proyectos', label: 'Proyectos' },
-  { href: '/#habilidades', label: 'Habilidades' },
-  { href: '/#contacto', label: 'Contacto' },
+  { to: '/#servicios', label: 'Servicios' },
+  { to: '/#proyectos', label: 'Proyectos' },
+  { to: '/#proceso', label: 'Cómo trabajo' },
+  { to: '/#sobre-mi', label: 'Sobre mí' },
+  { to: '/#faq', label: 'Preguntas' },
 ];
 
 export function Navbar() {
@@ -16,117 +17,98 @@ export function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
     setMenuOpen(false);
   }, [location]);
 
+  // Bloquea el scroll del fondo con el menú móvil abierto
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   return (
-    <>
-      <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'glass border-b border-zinc-800/80 shadow-2xl shadow-black/20'
-            : 'bg-transparent'
-        }`}
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <nav className="container-wide h-16 flex items-center justify-between">
-          {/* Logo */}
+    <header
+      className={cn(
+        'fixed top-0 inset-x-0 z-50 transition-all duration-300',
+        scrolled || menuOpen
+          ? 'bg-cream/90 backdrop-blur-md border-b border-cream-200 shadow-[0_1px_0_rgba(14,26,43,0.04)]'
+          : 'bg-transparent'
+      )}
+    >
+      <nav className="container-wide h-16 md:h-[4.5rem] flex items-center justify-between" aria-label="Principal">
+        <Link to="/" className="flex items-center gap-2.5 group" aria-label="Abilio Fernández — Inicio">
+          <span className="w-9 h-9 rounded-xl bg-ink text-brand flex items-center justify-center font-extrabold text-base group-hover:rotate-6 transition-transform duration-200">
+            A
+          </span>
+          <span className="font-extrabold text-ink tracking-tight">
+            Abilio<span className="text-brand">.</span>dev
+          </span>
+        </Link>
+
+        <div className="hidden lg:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className="px-4 py-2 text-sm font-semibold text-ink-600 hover:text-ink rounded-full hover:bg-ink/5 transition-colors duration-200"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2">
           <Link
-            to="/"
-            className="flex items-center gap-2 group"
-            aria-label="Abilio Fernández — Inicio"
+            id="nav-cta"
+            to="/#contacto"
+            className="btn btn-md btn-primary hidden sm:inline-flex"
           >
-            <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform duration-200">
-              A
-            </div>
-            <span className="font-semibold text-zinc-100 text-sm tracking-tight hidden sm:block">
-              Abilio<span className="text-zinc-500">.dev</span>
-            </span>
+            Presupuesto gratis
+            <ArrowRight size={16} />
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            className="lg:hidden w-11 h-11 flex items-center justify-center rounded-full text-ink hover:bg-ink/5 transition-colors"
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Menú móvil */}
+      {menuOpen && (
+        <div id="mobile-menu" className="lg:hidden bg-cream border-t border-cream-200 animate-fade-up">
+          <div className="container-wide py-4 flex flex-col">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-4 py-2 text-sm text-zinc-400 hover:text-zinc-100 rounded-lg hover:bg-zinc-800/60 transition-all duration-200"
+              <Link
+                key={link.to}
+                to={link.to}
+                className="px-2 py-3.5 text-lg font-bold text-ink border-b border-cream-200 last:border-0"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
+            <Link to="/#contacto" className="btn btn-lg btn-primary mt-4 w-full">
+              Pedir presupuesto gratis
+              <ArrowRight size={18} />
+            </Link>
           </div>
-
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-            <a
-              href="/#contacto"
-              className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium bg-blue-500 text-white rounded-xl hover:bg-blue-400 transition-all duration-200 active:scale-[0.97]"
-            >
-              Contactar
-            </a>
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60 transition-all duration-200"
-              aria-label="Abrir menú"
-            >
-              {menuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
-        </nav>
-      </motion.header>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="fixed inset-0 z-40 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-              onClick={() => setMenuOpen(false)}
-            />
-            <motion.div
-              className="absolute top-16 left-4 right-4 glass rounded-2xl p-4 border border-zinc-700/50"
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="flex items-center px-4 py-3 text-sm text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800/60 rounded-xl transition-all duration-200"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="mt-2 pt-2 border-t border-zinc-800">
-                <a
-                  href="/#contacto"
-                  className="flex items-center justify-center px-4 py-3 text-sm font-medium bg-blue-500 text-white rounded-xl hover:bg-blue-400 transition-all duration-200"
-                >
-                  Contactar
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+        </div>
+      )}
+    </header>
   );
 }

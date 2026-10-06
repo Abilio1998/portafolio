@@ -1,16 +1,103 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowRight, ExternalLink, Clock } from '@/components/ui/Icons';
 import { projects } from '@/data/projects';
 import { Badge } from '@/components/ui/Badge';
+import { Reveal } from '@/components/ui/Reveal';
 import { SectionTitle } from '@/components/ui/SectionTitle';
-import { staggerContainer, scaleIn, viewport } from '@/utils/motion';
+import { smallImage } from '@/utils/images';
+import { cn } from '@/utils/cn';
+import type { Project } from '@/types';
 
 const statusLabels = {
   live: 'En vivo',
   'in-progress': 'En desarrollo',
-  completed: 'Completado',
-};
+  completed: 'Entregado',
+} as const;
+
+function ProjectCard({ project, featured }: { project: Project; featured: boolean }) {
+  const src = `/projects/${project.imageFolder}/${smallImage(project.heroImage)}`;
+
+  return (
+    <article
+      className={cn(
+        'group relative h-full card overflow-hidden hover:-translate-y-1 hover:shadow-card-hover transition-all duration-300',
+        featured && 'lg:grid lg:grid-cols-[1.25fr_1fr]'
+      )}
+    >
+      <div
+        className={cn(
+          'relative overflow-hidden bg-cream-100',
+          featured ? 'aspect-[16/10] lg:aspect-auto lg:min-h-[340px]' : 'aspect-[16/10]'
+        )}
+      >
+        <img
+          src={src}
+          alt={`Captura de la web de ${project.title}`}
+          width={720}
+          height={450}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
+        />
+        <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+          {project.badge && (
+            <Badge variant={project.badgeVariant ?? 'default'}>{project.badge}</Badge>
+          )}
+          <Badge variant={project.status === 'in-progress' ? 'inprogress' : 'completed'}>
+            {statusLabels[project.status]}
+          </Badge>
+        </div>
+      </div>
+
+      <div className={cn('flex flex-col p-6 md:p-7', featured && 'lg:p-10 lg:justify-center')}>
+        <p className="eyebrow !mb-2">{project.category}</p>
+        <h3 className={cn('font-extrabold text-ink tracking-tight mb-2', featured ? 'text-2xl md:text-3xl' : 'text-xl')}>
+          <Link
+            to={`/projects/${project.id}`}
+            id={`project-card-${project.id}`}
+            className="after:absolute after:inset-0 after:content-[''] focus-visible:after:outline focus-visible:after:outline-[3px] focus-visible:after:outline-brand focus-visible:after:rounded-3xl"
+          >
+            {project.title}
+          </Link>
+        </h3>
+        <p className="text-sm md:text-base text-ink-600 leading-relaxed mb-5">{project.tagline}</p>
+
+        {featured && (
+          <p className="hidden lg:block text-sm text-ink-600 leading-relaxed mb-6 pl-4 border-l-4 border-brand">
+            <strong className="text-ink">Resultado:</strong> {project.result}
+          </p>
+        )}
+
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          {project.technologies.slice(0, 4).map((t) => (
+            <span key={t} className="chip">{t}</span>
+          ))}
+        </div>
+
+        <div className="mt-auto flex items-center justify-between gap-4 pt-5 border-t border-cream-200">
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink-500">
+            <Clock size={14} /> {project.duration}
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-sm font-extrabold text-brand-700 group-hover:gap-2.5 transition-all">
+            Ver el caso <ArrowRight size={16} />
+          </span>
+        </div>
+
+        {project.url && (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative z-10 mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-ink-500 hover:text-ink transition-colors self-start"
+            aria-label={`Visitar la web de ${project.title} (se abre en una pestaña nueva)`}
+          >
+            <ExternalLink size={13} /> Visitar la web real
+          </a>
+        )}
+      </div>
+    </article>
+  );
+}
 
 export function Projects() {
   const sorted = [...projects].sort((a, b) => a.order - b.order);
@@ -18,138 +105,35 @@ export function Projects() {
   return (
     <section
       id="proyectos"
-      className="section-padding"
+      className="section-padding bg-cream-100/60"
       aria-labelledby="projects-title"
     >
       <div className="container-narrow">
         <SectionTitle
           id="projects-title"
-          label="Proyectos"
-          title="Lo que construyo."
-          description="Productos digitales reales, resolviendo problemas reales. Cada proyecto nació de una necesidad concreta de negocio."
+          label="Prueba real"
+          title="Proyectos que ya están funcionando"
+          description="No son maquetas: son webs y sistemas reales de restaurantes y negocios. Cada uno nació de un problema concreto."
         />
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          variants={staggerContainer}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
           {sorted.map((project, i) => (
-            <motion.div
+            <Reveal
               key={project.id}
-              variants={scaleIn}
+              delay={i > 0 ? ((i - 1) % 2) * 100 : 0}
               className={i === 0 ? 'md:col-span-2' : ''}
             >
-              <Link
-                to={`/projects/${project.id}`}
-                id={`project-card-${project.id}`}
-                className="group relative block rounded-2xl border border-zinc-800 bg-zinc-900/40 overflow-hidden hover:border-zinc-700 transition-all duration-300 hover:shadow-2xl hover:shadow-black/30"
-                aria-label={`Ver proyecto ${project.title}`}
-              >
-                {/* Project image / placeholder */}
-                <div
-                  className={`relative overflow-hidden bg-zinc-900 ${
-                    i === 0 ? 'h-64 md:h-80' : 'h-48'
-                  }`}
-                  style={{
-                    background: `linear-gradient(135deg, ${project.accentColor}10 0%, #18181b 60%)`,
-                  }}
-                >
-                  {/* Hero image if available */}
-                  <img
-                    src={`/projects/${project.imageFolder}/${project.heroImage}`}
-                    alt={`Captura de ${project.title}`}
-                    className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
-                    loading="lazy"
-                    onError={(e) => {
-                      // Hide broken image gracefully
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
-
-                  {/* Color overlay */}
-                  <div
-                    className="absolute inset-0 opacity-30 group-hover:opacity-20 transition-opacity duration-300"
-                    style={{
-                      background: `linear-gradient(to bottom right, ${project.accentColor}20, transparent)`,
-                    }}
-                  />
-
-                  {/* Placeholder content when no image */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div
-                      className="text-6xl font-bold tracking-tighter opacity-10 select-none"
-                      style={{ color: project.accentColor }}
-                    >
-                      {project.title.slice(0, 2).toUpperCase()}
-                    </div>
-                  </div>
-
-                  {/* Top badges */}
-                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                    {project.badge && (
-                      <Badge variant={project.badgeVariant ?? 'default'}>
-                        {project.badge}
-                      </Badge>
-                    )}
-                    <Badge
-                      variant={
-                        project.status === 'in-progress'
-                          ? 'inprogress'
-                          : project.status === 'live'
-                          ? 'saas'
-                          : 'completed'
-                      }
-                    >
-                      {statusLabels[project.status]}
-                    </Badge>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="absolute top-4 right-4 w-9 h-9 rounded-xl bg-zinc-900/80 border border-zinc-700/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-110">
-                    <ArrowRight size={16} className="text-zinc-300" />
-                  </div>
-                </div>
-
-                {/* Card content */}
-                <div className="p-6">
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <div>
-                      <h3 className="text-lg font-semibold text-zinc-100 group-hover:text-white transition-colors duration-200 mb-1">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-zinc-500">{project.tagline}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 pt-4 border-t border-zinc-800/60">
-                    <div className="flex items-center gap-1.5 text-xs text-zinc-600">
-                      <Clock size={12} />
-                      {project.duration}
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.technologies.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-500 text-xs border border-zinc-700/50"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <span className="px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-600 text-xs border border-zinc-700/50">
-                          +{project.technologies.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+              <ProjectCard project={project} featured={i === 0} />
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
+
+        <Reveal className="mt-12 text-center">
+          <p className="text-ink-600 font-semibold mb-4">¿Quieres un resultado así para tu negocio?</p>
+          <Link to="/#contacto" className="btn btn-lg btn-primary">
+            Cuéntame tu proyecto <ArrowRight size={18} />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

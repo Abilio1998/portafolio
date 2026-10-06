@@ -1,55 +1,57 @@
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>Abilio Fernández — Frontend Developer & Product Builder</title>
-    <meta name="title" content="Abilio Fernández — Frontend Developer & Product Builder" />
-    <meta name="description" content="Construyo productos digitales que resuelven problemas reales. Frontend Developer especializado en React, Next.js, TypeScript e Inteligencia Artificial." />
-    <meta name="keywords" content="Frontend Developer, React, Next.js, TypeScript, Product Builder, Abilio Fernández, portfolio, desarrollo web" />
+    <title>Abilio Fernández — Webs, reservas online y cartas digitales para restaurantes</title>
+    <meta name="description" content="Desarrollador web con 4,5 años en hostelería. Creo webs rápidas, sistemas de reservas y cartas digitales con QR para restaurantes y negocios locales. Presupuesto gratis." />
     <meta name="author" content="Abilio Fernández" />
     <meta name="robots" content="index, follow" />
-    <meta name="language" content="Spanish" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://abilio.dev/" />
-    <meta property="og:title" content="Abilio Fernández — Frontend Developer & Product Builder" />
-    <meta property="og:description" content="Construyo productos digitales que resuelven problemas reales. Frontend Developer especializado en React, Next.js, TypeScript e IA." />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content="Abilio Fernández — Webs que traen clientes a tu negocio" />
+    <meta property="og:description" content="Webs rápidas, reservas online y cartas digitales para restaurantes y negocios locales. Pide tu presupuesto gratis." />
     <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://abilio.dev/" />
-    <meta property="twitter:title" content="Abilio Fernández — Frontend Developer & Product Builder" />
-    <meta property="twitter:description" content="Construyo productos digitales que resuelven problemas reales." />
-    <meta property="twitter:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Abilio Fernández — Webs que traen clientes a tu negocio" />
+    <meta name="twitter:description" content="Webs rápidas, reservas online y cartas digitales para restaurantes y negocios locales." />
+    <meta name="twitter:image" content="/og-image.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Preconnect para Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Theme color -->
+    <meta name="theme-color" content="#FBF8F3" />
 
-    <!-- Inter font - tipografía premium -->
+    <!-- Evita el parpadeo blanco mientras carga el CSS -->
+    <style>
+      html, body { background: #FBF8F3; margin: 0; }
+    </style>
+
+    <!-- Rendimiento: la imagen principal de la portada se pide cuanto antes (LCP) -->
     <link
       rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      as="image"
+      href="/projects/Elbalconet/El-balconet-premia-de-dalt.webp"
+      type="image/webp"
+      fetchpriority="high"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Theme color -->
-    <meta name="theme-color" content="#09090b" />
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p style="font-family:system-ui,sans-serif;padding:2rem;text-align:center">
+        Necesitas activar JavaScript para ver este sitio. Contacto: abifernandez826@gmail.com · +34 698 60 15 18
+      </p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

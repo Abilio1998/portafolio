@@ -16,14 +16,11 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          motion: ['framer-motion'],
         },
       },
     },
-    target: 'esnext',
+    target: 'es2022',
     minify: 'esbuild',
-  },
-  optimizeDeps: {
-    include: ['framer-motion', 'react-photo-view'],
+    cssCodeSplit: true,
   },
 })

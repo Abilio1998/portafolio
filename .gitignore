@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Imágenes originales (sin optimizar) — ver scripts/optimize-images.mjs
+originals
