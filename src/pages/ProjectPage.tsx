@@ -20,12 +20,12 @@ export function ProjectPage() {
 
   return (
     <main>
-      <title>{`${project.title} — Caso de éxito | Abi Studio`}</title>
+      <title>{`${project.title} — Caso de éxito | Abi Studio Web`}</title>
       <meta
         name="description"
         content={`${project.tagline} Desarrollado con ${project.technologies.slice(0, 4).join(', ')}.`}
       />
-      <meta property="og:title" content={`${project.title} — Abi Studio`} />
+      <meta property="og:title" content={`${project.title} — Abi Studio Web`} />
       <meta property="og:description" content={project.tagline} />
       <meta
         property="og:image"

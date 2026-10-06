@@ -22,7 +22,7 @@ export function Footer() {
                 A
               </span>
               <span className="font-extrabold text-white tracking-tight">
-                Abi<span className="text-brand">.</span>Studio
+                AbiStudio<span className="text-brand">.</span>web
               </span>
             </div>
             <p className="text-sm leading-relaxed max-w-xs">

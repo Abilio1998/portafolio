@@ -4,7 +4,7 @@ import { ArrowRight } from '@/components/ui/Icons';
 export function NotFound() {
   return (
     <main className="min-h-[100svh] flex items-center justify-center px-6 pt-20">
-      <title>Página no encontrada | Abi Studio</title>
+      <title>Página no encontrada | Abi Studio Web</title>
       <meta name="robots" content="noindex" />
       <div className="text-center animate-fade-up">
         <p className="text-8xl md:text-9xl font-extrabold text-brand/30 mb-2 tabular-nums tracking-tighter">404</p>

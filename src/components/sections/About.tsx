@@ -34,7 +34,7 @@ export function About() {
                 src="/abilio-fernandez.webp"
                 srcSet="/abilio-fernandez-sm.webp 320w, /abilio-fernandez.webp 640w"
                 sizes="(min-width: 1024px) 380px, 320px"
-                alt="Abi Studio, estudio de desarrollo web"
+                alt="Abi Studio Web, estudio de desarrollo web"
                 width={640}
                 height={862}
                 loading="lazy"

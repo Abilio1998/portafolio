@@ -1,5 +1,5 @@
 export const site = {
-  name: 'Abi Studio',
+  name: 'Abi Studio Web',
   email: 'abifernandez826@gmail.com',
   phone: '+34 698 60 15 18',
   phoneRaw: '34698601518',

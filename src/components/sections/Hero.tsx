@@ -97,7 +97,7 @@ export function Hero() {
             </div>
             <img
               src="/projects/Elbalconet/El-balconet-premia-de-dalt.webp"
-              alt="Web de El Balconet, restaurante en Premià de Dalt, diseñada por Abi Studio"
+              alt="Web de El Balconet, restaurante en Premià de Dalt, diseñada por Abi Studio Web"
               width={1400}
               height={643}
               className="w-full aspect-[16/11] object-cover object-center"
