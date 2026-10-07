@@ -198,6 +198,7 @@ export const projects: Project[] = [
       'El-balconet-premia-de-dalt-reservar.webp',
     ],
     accentColor: '#d4af37',
+    url: 'https://www.elbalconet.netlify.app',
     order: 2,
   },
 ];
