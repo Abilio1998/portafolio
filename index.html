@@ -51,8 +51,41 @@
       type="image/png"
       fetchpriority="high"
     />
+    <!-- Estilos del preloader -->
+    <style>
+      #global-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        background-color: #FBF8F3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+      }
+      #global-loader.loaded {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #ECE5D9;
+        border-top-color: #F97316;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
+    <!-- Pantalla de carga global -->
+    <div id="global-loader">
+      <div class="spinner"></div>
+    </div>
+
     <div id="root"></div>
     <noscript>
       <p style="font-family:system-ui,sans-serif;padding:2rem;text-align:center">
@@ -60,5 +93,17 @@
       </p>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Script para ocultar el preloader cuando TODO (incluyendo imágenes) haya cargado -->
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('global-loader');
+        if (loader) {
+          loader.classList.add('loaded');
+          // Opcional: eliminarlo del DOM después de la transición
+          setTimeout(() => loader.remove(), 500);
+        }
+      });
+    </script>
   </body>
 </html>
