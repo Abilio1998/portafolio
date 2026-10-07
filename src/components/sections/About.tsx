@@ -37,7 +37,6 @@ export function About() {
                 alt="Abi Studio Web, estudio de desarrollo web"
                 width={640}
                 height={862}
-                loading="lazy"
                 decoding="async"
                 className="relative w-full aspect-[4/5] object-cover object-top rounded-[2rem] shadow-card-hover"
               />

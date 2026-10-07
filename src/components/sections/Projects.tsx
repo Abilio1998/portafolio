@@ -35,7 +35,6 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
           alt={`Captura de la web de ${project.title}`}
           width={720}
           height={450}
-          loading="lazy"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
         />
